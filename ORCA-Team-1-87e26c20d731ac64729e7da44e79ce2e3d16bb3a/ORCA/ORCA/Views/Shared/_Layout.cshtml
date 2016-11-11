@@ -12,6 +12,10 @@
             background-color: green;
         }
 
+        ul {
+            font-size: 16px;
+        }
+
         .navbar-collapse {
             position: absolute;
             right: 200px;
@@ -20,20 +24,33 @@
         img {
             position: absolute;
             padding: 10px;
-            left: 40px;
+            left: 80px;
             top: 45px;
         }
 
         .top {
             border-style: solid;
-            border-width: 47px;
+            border-width: 35px;
             color: lightgray;
         }
 
         ol {
             position: absolute;
             right: 100px;
-            color: yellow;
+            color: green;
+            font-size: 16px;
+            bottom: 540px;
+        }
+
+        body {
+            background-color: gainsboro;
+        }
+
+        .Title {
+            border-style: solid;
+            border-width: 15px;
+            font-size: xx-large;
+            text-align: center;
         }
     </style>
 
@@ -48,14 +65,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+            @*
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            *@
 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li><a href="https://musso.marshall.edu/cas/login?service=https%3A%2F%2Fmymu.marshall.edu%2Fpaf%2Fauthorize">MyMu</a></li>
+                    <li><a href="http://www.marshall.edu/muonline">MuOnLine</a></li>
+                    <li><a href="http://www.marshall.edu/phonebook.php">Directory</a></li>
+                    <li><a href="www.marshall.edu"><i class="fi-magnifying-glass">Search</i></a></li>
+
                 </ul>
 
 
@@ -66,19 +87,30 @@
     </div>
     <div class="top lists">
         <a href="http://www.marshall.edu/home/index.html">
-            <img src="http://www.marshall.edu/home/img/main/mu_logo_blk.png" width="150" height="100" />
+            <img src="http://www.marshall.edu/home/img/main/mu_logo_blk.png" width="150" height="80" />
         </a>
 
         <ol class="nav navbar-nav">
-            <li><a href="http://www.marshall.edu/home/about">About Marshall</a></li>
-            <li><a href="http://www.marshall.edu/home/futurestudents">Future Students</a></li>
-            <li><a href="http://www.marshall.edu/home/students">Curent Students</a></li>
-            <li><a href="http://www.herdalum.com/s/1269/start.aspx">Alumni</a></li>
-            <li><a href="http://www.marshall.edu/home/facultystaff">Faculaty/Staff</a></li>
+            <li><a href="http://www.marshall.edu/home/about">ABOUT MARSHALL</a></li>
+            <li><a href="http://www.marshall.edu/home/futurestudents">FUTURE STUDENTS</a></li>
+            <li><a href="http://www.marshall.edu/home/students">CURRENT STUDENT</a></li>
+            <li><a href="http://www.herdalum.com/s/1269/start.aspx">ALUMNI</a></li>
+            <li><a href="http://www.marshall.edu/home/facultystaff">FACULTY/STAFF</a></li>
         </ol>
     </div>
+    <div class="Title">
+        MARSHALL EXPERTIS
+    </div>
+    <p>
 
-
+    </p>
+    <div>
+        <ul>
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Mu Experties", "About", "Home")</li>
+            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+        </ul>
+    </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
