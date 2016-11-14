@@ -7,6 +7,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ORCA.Models;
+using System.Data.Entity;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace ORCA.Controllers
 {
@@ -15,6 +18,7 @@ namespace ORCA.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private DefaultConnection db = new DefaultConnection();
 
         public ManageController()
         {
@@ -52,10 +56,148 @@ namespace ORCA.Controllers
 
         //DO NOT MESS WITH ANYTHING ABOVE THIS
 
+
+
+
+
+        public string getUserType(string email)
+        {
+            string userType = "";
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con))
+            {
+                string oString = "Select * from Users where email=@UserType";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@usertype", email);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        userType = oReader["UserType"].ToString();
+                    }
+                    myConnection.Close();
+                }
+            }
+            return userType;
+        }
+
+        public string getCreateDate (string email)
+        {
+            string createDate = "";
+
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con))
+            {
+                string oString = "Select * from Users where email=@CreateDate";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@createdate", email);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        createDate = oReader["CreateDate"].ToString();
+                    }
+                    myConnection.Close();
+                }
+            }
+            return createDate;
+        }
+        
+        public int getID(string email)
+        {
+            int ID = 0;
+
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con))
+            {
+                string oString = "Select * from Users Where Email=@theID";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@Theid", email);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        ID = Convert.ToInt32(oReader["ID"].ToString());
+                    }
+                    myConnection.Close();
+                }
+            }
+            return ID;
+        }
+
+        public bool getIsAdmin(string email)
+        {
+            bool isAdmin = false;
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con))
+            {
+                string oString = "Select * from Users where Email=@isAdmin";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@Isadmin", email);
+                myConnection.Open();
+                using(SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        isAdmin = Convert.ToBoolean(oReader["IsAdmin"].ToString());
+                        
+                    }
+                    myConnection.Close();
+                }
+            }
+            return isAdmin;
+
+        }
+
+
         //GET: /Manage/EditAccount
-
+        public ActionResult EditAccount()
+        {
+            return View();
+        }
         //POST: /Manage/EditAccount
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditAccount(User model)
+        {
+            User user = new Models.User
+            {
+                //not edited by user
+                //all of these need to be taken from database otherwise they will all try to fill with null because the view isnt returning anytihng
+                //taken using email. should be safe??
+                UserType = model.UserType,
+                IsAdmin = getIsAdmin(model.Email),
+                CreateDate = getCreateDate(model.Email),
+                ID = getID(model.Email),
 
+                //edited by user
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                PhoneNumber = model.PhoneNumber,
+                State = model.State,
+                Country = model.Country,
+                City = model.City,
+                Zip = model.Zip,
+                Organization = model.Organization
+            };
+
+            //test for errors
+            //this just builds a list of errors for you
+            //debug from this line and read the  errors
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(user);
+        }
 
 
 

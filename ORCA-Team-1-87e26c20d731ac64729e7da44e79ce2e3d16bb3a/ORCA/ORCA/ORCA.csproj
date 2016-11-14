@@ -225,6 +225,10 @@
     <Compile Include="Migrations\201611081526350_FirstLast to register.Designer.cs">
       <DependentUpon>201611081526350_FirstLast to register.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611140124479_KeyValtoUserTable.cs" />
+    <Compile Include="Migrations\201611140124479_KeyValtoUserTable.Designer.cs">
+      <DependentUpon>201611140124479_KeyValtoUserTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Expert.cs" />
@@ -298,6 +302,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Manage\EditAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -328,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611081526350_FirstLast to register.resx">
       <DependentUpon>201611081526350_FirstLast to register.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611140124479_KeyValtoUserTable.resx">
+      <DependentUpon>201611140124479_KeyValtoUserTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
