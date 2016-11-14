@@ -152,6 +152,31 @@ namespace ORCA.Controllers
 
         }
 
+        //GET: /Manage/ExpertRequest
+        public ActionResult ExpertRequest()
+        {
+            return View();
+        }
+        //POST: /Manage/ExpertRequest
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ExpertRequest(Expert model)
+        {
+            var expert = new Expert
+            {
+                Email = User.Identity.GetUserName(),
+                Category = model.Category,
+                Description = model.Description,
+                Title = model.Title,
+                Requested = true
+            };
+
+            db.Experts.Add(expert);
+            db.SaveChanges();
+            
+            return RedirectToAction("Index");
+
+        }
 
         //GET: /Manage/EditAccount
         public ActionResult EditAccount()
