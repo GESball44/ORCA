@@ -7,6 +7,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ORCA.Models;
+using System.Data.Entity;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace ORCA.Controllers
 {
@@ -15,6 +18,7 @@ namespace ORCA.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private DefaultConnection db = new DefaultConnection();
 
         public ManageController()
         {
@@ -52,10 +56,509 @@ namespace ORCA.Controllers
 
         //DO NOT MESS WITH ANYTHING ABOVE THIS
 
+
+
+//for User table  vvvv
+        public string getFirstName(string email)
+        {
+            string firstName = "";
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con)){
+                string oString = "Select * from Users where email=@fName";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@Fname", email);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        firstName = oReader["FirstName"].ToString();
+                    }
+                    myConnection.Close();
+                }
+            }
+            return firstName;
+        }
+
+        public string getLastName(string email)
+        {
+            string lastName = "";
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con))
+            {
+                string oString = "Select * from Users where email=@lName";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@Lname", email);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        lastName = oReader["FirstName"].ToString();
+                    }
+                    myConnection.Close();
+                }
+                return lastName;
+            }
+        }
+
+        public string getPhoneNumber(string email)
+        {
+            string phoneNum = "";
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con))
+            {
+                string oString = "Select * from Users where email=@phoneNum";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@PhoneNum", email);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        phoneNum = oReader["PhoneNumber"].ToString();
+                    }
+                    myConnection.Close();
+                }
+                return phoneNum;
+            }
+        }
+
+        public string getState(string email)
+        {
+            string state = "";
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con))
+            {
+                string oString = "Select * from Users where email=@STate";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@STATe", email);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        state = oReader["State"].ToString();
+                    }
+                    myConnection.Close();
+                }
+                return state;
+            }
+        }
+
+        public string getCountry(string email)
+        {
+            string country = "";
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con))
+            {
+                string oString = "Select * from Users where email=@COuntry";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@COUntry", email);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        country = oReader["Country"].ToString();
+                    }
+                    myConnection.Close();
+                }
+                return country;
+            }
+        }
+
+        public string getCity(string email)
+        {
+            string city = "";
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con))
+            {
+                string oString = "Select * from Users where email=@CIty";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@City", email);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        city = oReader["City"].ToString();
+                    }
+                    myConnection.Close();
+                }
+                return city;
+            }
+        }
+
+        public string getZip(string email)
+        {
+            string zip = "";
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con))
+            {
+                string oString = "Select * from Users where email=@ZipCode";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@Zipcode", email);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        zip = oReader["Zip"].ToString();
+                    }
+                    myConnection.Close();
+                }
+                return zip;
+            }
+        }
+
+        public string getOrg(string email)
+        {
+            string org = "";
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con))
+            {
+                string oString = "Select * from Users where email=@Organization";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@ORganization", email);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        org = oReader["Organization"].ToString();
+                    }
+                    myConnection.Close();
+                }
+                return org;
+            }
+        }
+
+        public string getUserType(string email)
+        {
+            string userType = "";
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con))
+            {
+                string oString = "Select * from Users where email=@Usertype";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@usertype", email);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        userType = oReader["UserType"].ToString();
+                    }
+                    myConnection.Close();
+                }
+            }
+            return userType;
+        }
+
+        public string getCreateDate (string email)
+        {
+            string createDate = "";
+
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con))
+            {
+                string oString = "Select * from Users where email=@CreateDate";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@createdate", email);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        createDate = oReader["CreateDate"].ToString();
+                    }
+                    myConnection.Close();
+                }
+            }
+            return createDate;
+        }
+        
+        public int getID(string email)
+        {
+            int ID = 0;
+
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con))
+            {
+                string oString = "Select * from Users Where Email=@theID";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@Theid", email);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        ID = Convert.ToInt32(oReader["ID"].ToString());
+                    }
+                    myConnection.Close();
+                }
+            }
+            return ID;
+        }
+
+        public bool getIsAdmin(string email)
+        {
+            bool isAdmin = false;
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con))
+            {
+                string oString = "Select * from Users where Email=@isAdmin";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@Isadmin", email);
+                myConnection.Open();
+                using(SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        isAdmin = Convert.ToBoolean(oReader["IsAdmin"].ToString());
+                        
+                    }
+                    myConnection.Close();
+                }
+            }
+            return isAdmin;
+        }
+//for User table ^^^^
+
+//for expert table vvvv
+
+        public int getExpertID(string email)
+        {
+            int ID = 0;
+
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con))
+            {
+                string oString = "Select * from Experts Where Email=@theID";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@Theid", email);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        ID = Convert.ToInt32(oReader["ID"].ToString());
+                    }
+                    myConnection.Close();
+                }
+            }
+            return ID;
+        }
+
+        public string getExpertTitle(string email)
+        {
+            string title = "";
+
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con))
+            {
+                string oString = "Select * from Experts where email=@Title";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@TItle", email);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        title = oReader["Title"].ToString();
+                    }
+                    myConnection.Close();
+                }
+            }
+            return title;
+        }
+
+        public string getExpertCategory(string email)
+        {
+            string cat = "";
+
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con))
+            {
+                string oString = "Select * from Experts where email=@Category";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@CAtegory", email);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        cat = oReader["Category"].ToString();
+                    }
+                    myConnection.Close();
+                }
+            }
+            return cat;
+        }
+
+        public string getExpertDesc(string email)
+        {
+            string desc = "";
+
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con))
+            {
+                string oString = "Select * from Experts where email=@Description";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@DEscription", email);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        desc = oReader["Description"].ToString();
+                    }
+                    myConnection.Close();
+                }
+            }
+            return desc;
+        }
+
+        //for expert table ^^^^
+
+        //GET: /Manage/ChangeType
+        public ActionResult ChangeType(string email)
+        {
+            User user = db.Users.Find(email);
+            return View(user);
+        }
+        //POST: /Manage/ChangeType
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeType(User model)
+        {
+
+            //change usertype and put in old info. might be a better way to do this but this is the way i knew how to
+            var user = new User
+            {
+                //this is the only one changed by view
+                UserType = model.UserType,
+                //the rest are pulled back from db
+                CreateDate = getCreateDate(User.Identity.GetUserName()),
+                ID = getID(User.Identity.GetUserName()),
+                IsAdmin = getIsAdmin(User.Identity.GetUserName()),
+                Email = User.Identity.GetUserName(),
+                FirstName = getFirstName(User.Identity.GetUserName()),
+                LastName = getLastName(User.Identity.GetUserName()),
+                PhoneNumber = getPhoneNumber(User.Identity.GetUserName()),
+                State = getState(User.Identity.GetUserName()),
+                Country = getCountry(User.Identity.GetUserName()),
+                City = getCity(User.Identity.GetUserName()),
+                Zip = getZip(User.Identity.GetUserName()),
+                Organization = getOrg(User.Identity.GetUserName())
+
+            };
+
+            //change request to false so it stops showing up on list
+            var expert = new Expert
+            {
+                //only one to be changed
+                Requested = false,
+                //these need to just be taken from db
+                ID = getExpertID(User.Identity.GetUserName()),
+                Email = User.Identity.GetUserName(),
+                Title = getExpertTitle(User.Identity.GetUserName()),
+                Category = getExpertCategory(User.Identity.GetUserName()),
+                Description = getExpertDesc(User.Identity.GetUserName())
+            };
+
+            if(ModelState.IsValid)
+            {
+                //save new user info
+                db.Entry(user).State = EntityState.Modified;
+                //save new expert info
+                db.Entry(expert).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(user);
+
+        }
+
+        //GET: /Manage/VerifyExpert
+        public ActionResult VerifyExpert()
+        {
+            var temp = db.Experts.ToList();
+            return View(temp);
+        }
+
+        //GET: /Manage/ExpertRequest
+        public ActionResult ExpertRequest()
+        {
+            return View();
+        }
+        //POST: /Manage/ExpertRequest
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ExpertRequest(Expert model)
+        {
+            var expert = new Expert
+            {
+                Email = User.Identity.GetUserName(),
+                Category = model.Category,
+                Description = model.Description,
+                Title = model.Title,
+                Requested = true
+            };
+
+            db.Experts.Add(expert);
+            db.SaveChanges();
+            
+            return RedirectToAction("Index");
+
+        }
+
         //GET: /Manage/EditAccount
-
+        public ActionResult EditAccount()
+        {
+            return View();
+        }
         //POST: /Manage/EditAccount
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditAccount(User model)
+        {
+            User user = new Models.User
+            {
+                //not edited by user
+                //all of these need to be taken from database otherwise they will all try to fill with null because the view isnt returning anytihng
+                //taken using email. should be safe??
+                UserType = model.UserType,
+                IsAdmin = getIsAdmin(model.Email),
+                CreateDate = getCreateDate(model.Email),
+                ID = getID(model.Email),
 
+                //edited by user
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                PhoneNumber = model.PhoneNumber,
+                State = model.State,
+                Country = model.Country,
+                City = model.City,
+                Zip = model.Zip,
+                Organization = model.Organization
+            };
+
+            //test for errors
+            //this just builds a list of errors for you
+            //debug from this line and read the  errors
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(user);
+        }
 
 
 

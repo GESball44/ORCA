@@ -157,7 +157,7 @@ namespace ORCA.Controllers
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
 
                 //maybe need this for when we wanna edit register process
-                var user2 = new User { ID = model2.ID, Email = model2.Email, FirstName = model2.FirstName, LastName = model2.LastName};
+                var user2 = new User { ID = model2.ID, Email = model2.Email, FirstName = model2.FirstName, LastName = model2.LastName, UserType = "user", IsAdmin = false, CreateDate = DateTime.Today.ToString()};
 
                 var result = await UserManager.CreateAsync(user, model.Password);
 
