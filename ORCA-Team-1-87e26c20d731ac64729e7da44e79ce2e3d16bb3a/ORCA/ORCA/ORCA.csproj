@@ -312,6 +312,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Manage\EditAccount.cshtml" />
     <Content Include="Views\Manage\ExpertRequest.cshtml" />
+    <Content Include="Views\Manage\ChangeType.cshtml" />
+    <Content Include="Views\Manage\VerifyExpert.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
