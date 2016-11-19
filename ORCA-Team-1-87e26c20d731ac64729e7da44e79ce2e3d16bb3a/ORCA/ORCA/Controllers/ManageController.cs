@@ -316,7 +316,15 @@ namespace ORCA.Controllers
                 {
                     while (oReader.Read())
                     {
-                        isAdmin = Convert.ToBoolean(oReader["IsAdmin"].ToString());
+                        string a = oReader["IsAdmin"].ToString();
+                        if (a.Equals("True"))
+                        {
+                            isAdmin = true;
+                        }
+                        else
+                        {
+                            isAdmin = false;
+                        }
                         
                     }
                     myConnection.Close();
@@ -420,6 +428,35 @@ namespace ORCA.Controllers
             return desc;
         }
 
+        public bool getHasRequested(string email)
+        {
+            bool hasRequested = false;
+            var con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
+            using (SqlConnection myConnection = new SqlConnection(con))
+            {
+                string oString = "Select * from Users where Email=@Requested";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@requested", email);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        string a = oReader["Requested"].ToString();
+                        if (a.Equals("True"))
+                        {
+                            hasRequested = true;
+                        }
+                        else
+                        {
+                            hasRequested = false;
+                        }
+                    }
+                    myConnection.Close();
+                }
+            }
+            return hasRequested;
+        }
         //for expert table ^^^^
 
         //GET: /Manage/ChangeType
@@ -529,7 +566,7 @@ namespace ORCA.Controllers
                 //not edited by user
                 //all of these need to be taken from database otherwise they will all try to fill with null because the view isnt returning anytihng
                 //taken using email. should be safe??
-                UserType = model.UserType,
+                UserType = getUserType(model.Email),
                 IsAdmin = getIsAdmin(model.Email),
                 CreateDate = getCreateDate(model.Email),
                 ID = getID(model.Email),
