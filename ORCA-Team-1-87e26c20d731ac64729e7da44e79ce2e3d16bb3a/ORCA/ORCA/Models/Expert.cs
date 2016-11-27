@@ -10,9 +10,11 @@ namespace ORCA.Models
         
         //missing image and becameExpert flag for this table
         public int ID { get; set; }
+        public string Email { get; set; }
         public string Title { get; set; }
         public string Category { get; set; }
         public string Description { get; set; }
+        public bool Requested { get; set; }
         
     }
 }

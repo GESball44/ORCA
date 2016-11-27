@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 
 using System.Data.Entity;
+using System.ComponentModel.DataAnnotations;
 
 namespace ORCA.Models
 {
@@ -11,6 +12,7 @@ namespace ORCA.Models
     {
 
         //dont know what to do with all the field so some of them will not be required or asked for for awhile
+        [Key]
         public int ID { get; set; }
         public string Email { get; set; }
         public string FirstName { get; set; }
@@ -27,7 +29,7 @@ namespace ORCA.Models
         //these are preset field that the user doesnt enter
 
         //tells whether they are regular user or expert
-        //should default to regular
+        //should default to user
         public string UserType { get; set; }
         //isAdmin should default to false
         public bool IsAdmin { get; set; }
