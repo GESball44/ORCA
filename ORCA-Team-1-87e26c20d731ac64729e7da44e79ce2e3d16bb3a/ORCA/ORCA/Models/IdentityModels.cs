@@ -29,5 +29,7 @@ namespace ORCA.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<ORCA.Models.Expert> Experts { get; set; }
     }
 }

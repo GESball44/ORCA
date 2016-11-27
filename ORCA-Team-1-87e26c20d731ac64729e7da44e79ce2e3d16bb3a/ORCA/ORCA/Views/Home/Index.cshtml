@@ -6,36 +6,37 @@
     .pagraph1 {
         font-family: Arial;
         font-size: 16px;
-        color: green;
+        color: black;
         text-align: justify;
     }
 
     .img-thumbnail {
         top: 300px;
         width: 800px;
-        height: 250px;
+        height: 300px;
         margin-left: 25px;
+        right:100px;
     }
+ 
+   
 
-    .jumbotron {
-        top: 320px;
-        width: 800px;
-        height: 250px;
-    }
+    
 </style>
 
-<div class="jumbotron">
-    <h1>Marshall</h1>
-
-
-</div>
+<body>
 
 <div>
-
     <img class="img-thumbnail" src="http://www.marshall.edu/leedgreen/files/WAEC-1.jpg" />
 
-
 </div>
+   
+
+<br /><br /><br /><br /><br /><br />
+
+    <br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br />
+    <br /><br /><br />
+
 
 
 
@@ -51,6 +52,9 @@
 
         Please refer to the categories on the right of this page for a listing of experts. We appreciate your interest in Marshall University!
     </p>
+    </div>
+   </body>
+    @*
 </div>
 <div class="row">
     <div class="col-md-4">
@@ -73,3 +77,18 @@
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+@*
+@section scripts{
+    <script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+        var simple = $.connection.chatt;
+        simple.clinet.showMessage = function (introduction) {
+            alert(showMessage)
+        };
+        $.connection.chatt.start().done(function () {
+            simple.server.SendMessage();
+        });
+    </script>
+    }
+*@

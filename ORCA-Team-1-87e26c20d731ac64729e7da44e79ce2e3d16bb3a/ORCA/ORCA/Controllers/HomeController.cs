@@ -26,5 +26,11 @@ namespace ORCA.Controllers
 
             return View();
         }
-    }
+        public ActionResult GotoHome()
+        {
+           //ViewBag.Message = "Your Home2 page.";
+
+            return View("GotoHome");
+        }
+        }
 }

@@ -4,6 +4,8 @@
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -15,12 +17,17 @@
         ul {
             font-size: 16px;
         }
+        .list-of-orca{
+            
+            position: absolute;
+            left: 80px;
+
+                    }
 
         .navbar-collapse {
             position: absolute;
             right: 200px;
         }
-
         img {
             position: absolute;
             padding: 10px;
@@ -69,26 +76,29 @@
             @*
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             *@
+            @* liked pages to the web app *@
 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="https://musso.marshall.edu/cas/login?service=https%3A%2F%2Fmymu.marshall.edu%2Fpaf%2Fauthorize">MyMu</a></li>
                     <li><a href="http://www.marshall.edu/muonline">MuOnLine</a></li>
                     <li><a href="http://www.marshall.edu/phonebook.php">Directory</a></li>
-                    <li><a href="www.marshall.edu"><i class="fi-magnifying-glass">Search</i></a></li>
+                    @*<li><a href="www.marshall.edu"><i class="fi-magnifying-glass">Search</i></a></li>*@
 
                 </ul>
+            
+                    @Html.Partial("_LoginPartial")
 
-
-                @Html.Partial("_LoginPartial")
-
-            </div>
+                </div>
         </div>
     </div>
+   
+   @*marshall logo image*@
     <div class="top lists">
         <a href="http://www.marshall.edu/home/index.html">
             <img src="http://www.marshall.edu/home/img/main/mu_logo_blk.png" width="150" height="80" />
         </a>
+        @* liked websites about marshall and located on the top menu *@
 
         <ol class="nav navbar-nav">
             <li><a href="http://www.marshall.edu/home/about">ABOUT MARSHALL</a></li>
@@ -98,24 +108,28 @@
             <li><a href="http://www.marshall.edu/home/facultystaff">FACULTY/STAFF</a></li>
         </ol>
     </div>
+    @* title of the page*@
     <div class="Title">
-        MARSHALL EXPERTIS
+        MU EXPERTS
     </div>
     <p>
 
     </p>
-    <div>
-        <ul>
+    <div class="list-of-orca">
+        <ul class="nav navbar-nav">
             <li>@Html.ActionLink("Home", "Index", "Home")</li>
-            <li>@Html.ActionLink("Mu Experties", "About", "Home")</li>
+            <li>@Html.ActionLink("Mu Experties", "Index", "Users")</li>
             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            <li>@Html.ActionLink("List_experts", "Index", "Experts")</li>
+            <li>@Html.ActionLink("Home", "GotoHome", "Home")</li>
         </ul>
-    </div>
+     </div>
+    <br />
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - ORCA</p>
         </footer>
     </div>
 

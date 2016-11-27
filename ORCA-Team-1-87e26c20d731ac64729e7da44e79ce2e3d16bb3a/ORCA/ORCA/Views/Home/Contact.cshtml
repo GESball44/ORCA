@@ -15,3 +15,36 @@
     <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
     <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
 </address>
+<h1>
+    chatt
+</h1>
+username:<input type="text" id="username" />
+message :<input type="text" id="message" />
+
+<input type="button" id="send" value="send" />
+<ul id="chatt"></ul>
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+        $(function () {
+            var chatt = $.connection.chatt;
+            chatt.client.showMessage = function (username, message) {
+                var username = $('<div/>').text(username).html();
+                var message = $('<div/>').text(message).html();
+
+
+                $('#chatt').append('<li><strong>' + username + '</strong>:&nbsp;&nbsp;' + message + '</li>');
+
+            }
+            $.connection.hub.start().done(function () {
+                $('#send').click(function () {
+                    chatt.server.sendMessage($('#username').val(), $('#message').val());
+                    $('#message').val('');
+
+                });
+            });
+        });
+    </script>
+    }

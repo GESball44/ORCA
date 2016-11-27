@@ -352,3 +352,7 @@ C:\Users\Enoch\Documents\GitHub\ORCA\ORCA-Team-1-87e26c20d731ac64729e7da44e79ce2
 C:\Users\Enoch\Documents\GitHub\ORCA\ORCA-Team-1-87e26c20d731ac64729e7da44e79ce2e3d16bb3a\ORCA\ORCA\obj\Debug\ORCA.csproj.GenerateResource.Cache
 C:\Users\Enoch\Documents\GitHub\ORCA\ORCA-Team-1-87e26c20d731ac64729e7da44e79ce2e3d16bb3a\ORCA\ORCA\obj\Debug\ORCA.dll
 C:\Users\Enoch\Documents\GitHub\ORCA\ORCA-Team-1-87e26c20d731ac64729e7da44e79ce2e3d16bb3a\ORCA\ORCA\obj\Debug\ORCA.pdb
+C:\Users\Enoch\Documents\GitHub\ORCA\ORCA-Team-1-87e26c20d731ac64729e7da44e79ce2e3d16bb3a\ORCA\ORCA\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Enoch\Documents\GitHub\ORCA\ORCA-Team-1-87e26c20d731ac64729e7da44e79ce2e3d16bb3a\ORCA\ORCA\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\Enoch\Documents\GitHub\ORCA\ORCA-Team-1-87e26c20d731ac64729e7da44e79ce2e3d16bb3a\ORCA\ORCA\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Enoch\Documents\GitHub\ORCA\ORCA-Team-1-87e26c20d731ac64729e7da44e79ce2e3d16bb3a\ORCA\ORCA\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
