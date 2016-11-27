@@ -1,6 +1,12 @@
 ﻿@model IEnumerable<ORCA.Models.Expert>
+    @using Microsoft.AspNet.Identity
 
 @{
+    ORCA.Controllers.ManageController thing = new ORCA.Controllers.ManageController();
+    String email = User.Identity.GetUserName();
+    String type = thing.getUserType(email);
+    Boolean isAdmin = thing.getIsAdmin(email);
+
     ViewBag.Title = "VerifyExpert";
 }
 
@@ -22,13 +28,18 @@
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Requested)
-        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+
+@if (isAdmin == true)
+{
+    foreach (var item in Model)
+    {
+        String itemsEmail = item.Email;
+        String itemsType = thing.getUserType(itemsEmail);
+        if (item.Requested == true && itemsType.Equals("user"))
+        {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Email)
@@ -42,12 +53,20 @@
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
+
         <td>
-            @Html.ActionLink("Verify", "ChangeType", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" value="@item.Email" name="Email" />
+                <input type="submit"/>
+            }
         </td>
+
+        
     </tr>
+        }
+    }
 }
 
 </table>

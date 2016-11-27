@@ -1,5 +1,11 @@
 ﻿@model ORCA.Models.IndexViewModel
+    @using Microsoft.AspNet.Identity
 @{
+    ORCA.Controllers.ManageController thing = new ORCA.Controllers.ManageController();
+    String email = User.Identity.GetUserName();
+    String type = thing.getUserType(email);
+    Boolean isAdmin = thing.getIsAdmin(email);
+
     ViewBag.Title = "Manage";
 }
 
@@ -16,15 +22,28 @@
             @Html.ActionLink("Here", "EditAccount")
         </dd>
 
+        @if(type.Equals("user"))
+        {
         <dt>Request to become Expert:</dt>
         <dd>
             @Html.ActionLink("Here", "ExpertRequest")
         </dd>
+        }
 
+        @if (isAdmin == true)
+        {
         <dt>View List of Expert Requests:</dt>
         <dd>
             @Html.ActionLink("Here", "VerifyExpert")
         </dd>
+
+        <dt>Promote Account to Admin:</dt>
+        <dd>
+            @Html.ActionLink("Here", "AdminPromote")
+        </dd>
+        }
+
+        
 
         <dt>Password:</dt>
         <dd>
@@ -38,11 +57,6 @@
                 @Html.ActionLink("Create", "SetPassword")
             }
             ]
-        </dd>
-        <dt>External Logins:</dt>
-        <dd>
-            @Model.Logins.Count [
-            @Html.ActionLink("Manage", "ManageLogins") ]
         </dd>
         
         
