@@ -459,36 +459,79 @@ namespace ORCA.Controllers
         }
         //for expert table ^^^^
 
-        //GET: /Manage/ChangeType
-        public ActionResult ChangeType(string email)
+
+        //GET: /Manage/AdminPromote
+        public ActionResult AdminPromote()
         {
-            User user = db.Users.Find(email);
-            return View(user);
+            var temp = db.Users.ToList();
+            return View(temp);
         }
-        //POST: /Manage/ChangeType
+        //POST: /Manage/AdminPromote
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ChangeType(User model)
+        public ActionResult AdminPromote(string email)
         {
+            var user = new User
+            {
+                //this is the only one changed by view
+                IsAdmin = true,
+                //the rest are pulled back from db
+                UserType = getUserType(email),
+                CreateDate = getCreateDate(email),
+                ID = getID(email),
+                Email = email,
+                FirstName = getFirstName(email),
+                LastName = getLastName(email),
+                PhoneNumber = getPhoneNumber(email),
+                State = getState(email),
+                Country = getCountry(email),
+                City = getCity(email),
+                Zip = getZip(email),
+                Organization = getOrg(email)
 
+            };
+
+            //var errors = ModelState.Values.SelectMany(v => v.Errors);
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(user);
+        }
+
+        //GET: /Manage/VerifyExpert
+        public ActionResult VerifyExpert()
+        {
+            var temp = db.Experts.ToList();
+            return View(temp);
+        }
+
+        //POST: /Manage/VerifyExpert
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult VerifyExpert(string email)
+        {
             //change usertype and put in old info. might be a better way to do this but this is the way i knew how to
             var user = new User
             {
                 //this is the only one changed by view
-                UserType = model.UserType,
+                UserType = "expert",
                 //the rest are pulled back from db
-                CreateDate = getCreateDate(User.Identity.GetUserName()),
-                ID = getID(User.Identity.GetUserName()),
-                IsAdmin = getIsAdmin(User.Identity.GetUserName()),
-                Email = User.Identity.GetUserName(),
-                FirstName = getFirstName(User.Identity.GetUserName()),
-                LastName = getLastName(User.Identity.GetUserName()),
-                PhoneNumber = getPhoneNumber(User.Identity.GetUserName()),
-                State = getState(User.Identity.GetUserName()),
-                Country = getCountry(User.Identity.GetUserName()),
-                City = getCity(User.Identity.GetUserName()),
-                Zip = getZip(User.Identity.GetUserName()),
-                Organization = getOrg(User.Identity.GetUserName())
+                CreateDate = getCreateDate(email),
+                ID = getID(email),
+                IsAdmin = getIsAdmin(email),
+                Email = email,
+                FirstName = getFirstName(email),
+                LastName = getLastName(email),
+                PhoneNumber = getPhoneNumber(email),
+                State = getState(email),
+                Country = getCountry(email),
+                City = getCity(email),
+                Zip = getZip(email),
+                Organization = getOrg(email)
 
             };
 
@@ -498,14 +541,14 @@ namespace ORCA.Controllers
                 //only one to be changed
                 Requested = false,
                 //these need to just be taken from db
-                ID = getExpertID(User.Identity.GetUserName()),
-                Email = User.Identity.GetUserName(),
-                Title = getExpertTitle(User.Identity.GetUserName()),
-                Category = getExpertCategory(User.Identity.GetUserName()),
-                Description = getExpertDesc(User.Identity.GetUserName())
+                ID = getExpertID(email),
+                Email = email,
+                Title = getExpertTitle(email),
+                Category = getExpertCategory(email),
+                Description = getExpertDesc(email)
             };
 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 //save new user info
                 db.Entry(user).State = EntityState.Modified;
@@ -516,13 +559,6 @@ namespace ORCA.Controllers
             }
             return View(user);
 
-        }
-
-        //GET: /Manage/VerifyExpert
-        public ActionResult VerifyExpert()
-        {
-            var temp = db.Experts.ToList();
-            return View(temp);
         }
 
         //GET: /Manage/ExpertRequest
@@ -583,6 +619,17 @@ namespace ORCA.Controllers
                 Organization = model.Organization
             };
 
+            var expert = new Expert
+            {
+                Requested = getHasRequested(User.Identity.GetUserName()),
+                ID = getExpertID(User.Identity.GetUserName()),
+                Email = model.Email,
+                Title = getExpertTitle(User.Identity.GetUserName()),
+                Category = getExpertCategory(User.Identity.GetUserName()),
+                Description = getExpertDesc(User.Identity.GetUserName())
+            };
+
+
             //test for errors
             //this just builds a list of errors for you
             //debug from this line and read the  errors
@@ -590,6 +637,8 @@ namespace ORCA.Controllers
 
             if (ModelState.IsValid)
             {
+                db.Entry(expert).State = EntityState.Modified;
+
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

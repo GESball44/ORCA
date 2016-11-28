@@ -53,11 +53,17 @@
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
+
         <td>
-            @Html.ActionLink("Verify", "ChangeType", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" value="@item.Email" name="Email" />
+                <input type="submit"/>
+            }
         </td>
+
+        
     </tr>
         }
     }
