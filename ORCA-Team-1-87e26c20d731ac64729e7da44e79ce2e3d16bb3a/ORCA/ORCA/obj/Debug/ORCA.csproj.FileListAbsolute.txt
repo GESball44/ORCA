@@ -444,5 +444,11 @@ C:\Users\GeoffS\Documents\GitHub\ORCATEAM1\ORCA\ORCA-Team-1-87e26c20d731ac64729e
 C:\Users\GeoffS\Documents\GitHub\ORCATEAM1\ORCA\ORCA-Team-1-87e26c20d731ac64729e7da44e79ce2e3d16bb3a\ORCA\ORCA\obj\Debug\ORCA.Migrations.KeyValtoUserTable.resources
 C:\Users\GeoffS\Documents\GitHub\ORCATEAM1\ORCA\ORCA-Team-1-87e26c20d731ac64729e7da44e79ce2e3d16bb3a\ORCA\ORCA\obj\Debug\ORCA.Migrations.expertrequestexperttable.resources
 C:\Users\GeoffS\Documents\GitHub\ORCATEAM1\ORCA\ORCA-Team-1-87e26c20d731ac64729e7da44e79ce2e3d16bb3a\ORCA\ORCA\obj\Debug\ORCA.Migrations.addemailtoexperts.resources
+<<<<<<< HEAD
 C:\Users\GeoffS\Documents\GitHub\ORCATEAM1\ORCA\ORCA-Team-1-87e26c20d731ac64729e7da44e79ce2e3d16bb3a\ORCA\ORCA\obj\Debug\ORCA.Migrations.ticketingstuff.resources
 C:\Users\GeoffS\Documents\GitHub\ORCATEAM1\ORCA\ORCA-Team-1-87e26c20d731ac64729e7da44e79ce2e3d16bb3a\ORCA\ORCA\obj\Debug\ORCA.Migrations.expertidtotickets.resources
+=======
+C:\Users\Enoch\Documents\GitHub\ORCA\ORCA-Team-1-87e26c20d731ac64729e7da44e79ce2e3d16bb3a\ORCA\ORCA\obj\Debug\ORCA.Migrations.KeyValtoUserTable.resources
+C:\Users\Enoch\Documents\GitHub\ORCA\ORCA-Team-1-87e26c20d731ac64729e7da44e79ce2e3d16bb3a\ORCA\ORCA\obj\Debug\ORCA.Migrations.expertrequestexperttable.resources
+C:\Users\Enoch\Documents\GitHub\ORCA\ORCA-Team-1-87e26c20d731ac64729e7da44e79ce2e3d16bb3a\ORCA\ORCA\obj\Debug\ORCA.Migrations.addemailtoexperts.resources
+>>>>>>> refs/remotes/origin/master
