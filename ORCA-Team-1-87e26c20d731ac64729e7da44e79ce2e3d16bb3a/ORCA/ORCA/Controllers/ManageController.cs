@@ -58,6 +58,16 @@ namespace ORCA.Controllers
 
 
 
+
+
+
+
+
+
+
+
+
+
 //for User table  vvvv
         public string getFirstName(string email)
         {
@@ -491,7 +501,6 @@ namespace ORCA.Controllers
 
             };
 
-            //var errors = ModelState.Values.SelectMany(v => v.Errors);
 
             if (ModelState.IsValid)
             {
@@ -508,7 +517,6 @@ namespace ORCA.Controllers
             var temp = db.Experts.ToList();
             return View(temp);
         }
-
         //POST: /Manage/VerifyExpert
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -558,32 +566,6 @@ namespace ORCA.Controllers
                 return RedirectToAction("Index");
             }
             return View(user);
-
-        }
-
-        //GET: /Manage/ExpertRequest
-        public ActionResult ExpertRequest()
-        {
-            return View();
-        }
-        //POST: /Manage/ExpertRequest
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult ExpertRequest(Expert model)
-        {
-            var expert = new Expert
-            {
-                Email = User.Identity.GetUserName(),
-                Category = model.Category,
-                Description = model.Description,
-                Title = model.Title,
-                Requested = true
-            };
-
-            db.Experts.Add(expert);
-            db.SaveChanges();
-            
-            return RedirectToAction("Index");
 
         }
 
@@ -645,6 +627,57 @@ namespace ORCA.Controllers
             }
             return View(user);
         }
+
+        //GET: /Manage/ExpertList
+        public ActionResult ExpertList()
+        {
+            var temp = db.Experts.ToList();
+            return View(temp);
+        }
+
+        //GET: /Manage/CreateTicket
+        public ActionResult CreateTicket()
+        {
+
+            return View();
+        }
+        //POST: /Manage/CreateTicket
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateTicket(Ticket model)
+        {
+            //// expertID = ;
+            //var ticket = new Ticket
+            //{
+            //    ID = model.ID,
+            //    UserEmail = User.Identity.GetUserName(),
+            //    ExpertID = ,
+            //    Subject = model.Subject,
+            //    Text = model.Text,
+            //    CreateDate = DateTime.Today.ToString()
+
+            //};
+
+            //if (ModelState.IsValid)
+            //{
+            //    db.Entry(ticket).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+            //return View(ticket);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

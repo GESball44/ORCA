@@ -237,6 +237,14 @@
     <Compile Include="Migrations\201611141858154_add email to experts.Designer.cs">
       <DependentUpon>201611141858154_add email to experts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611281808410_ticketing stuff.cs" />
+    <Compile Include="Migrations\201611281808410_ticketing stuff.Designer.cs">
+      <DependentUpon>201611281808410_ticketing stuff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611281908083_expert id to tickets.cs" />
+    <Compile Include="Migrations\201611281908083_expert id to tickets.Designer.cs">
+      <DependentUpon>201611281908083_expert id to tickets.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Expert.cs" />
@@ -311,9 +319,10 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Manage\EditAccount.cshtml" />
-    <Content Include="Views\Manage\ExpertRequest.cshtml" />
     <Content Include="Views\Manage\VerifyExpert.cshtml" />
     <Content Include="Views\Manage\AdminPromote.cshtml" />
+    <Content Include="Views\Manage\ExpertList.cshtml" />
+    <Content Include="Views\Manage\CreateTicket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -353,6 +362,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611141858154_add email to experts.resx">
       <DependentUpon>201611141858154_add email to experts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611281808410_ticketing stuff.resx">
+      <DependentUpon>201611281808410_ticketing stuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611281908083_expert id to tickets.resx">
+      <DependentUpon>201611281908083_expert id to tickets.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
