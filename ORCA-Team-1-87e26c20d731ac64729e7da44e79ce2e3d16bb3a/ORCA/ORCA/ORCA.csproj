@@ -333,6 +333,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
@@ -350,6 +351,12 @@
     <Content Include="Views\Experts1\Index.cshtml" />
     <Content Include="Views\Home\Home2.cshtml" />
     <Content Include="Views\Shared\GotoHome.cshtml" />
+=======
+    <Content Include="Views\Manage\EditAccount.cshtml" />
+    <Content Include="Views\Manage\ExpertRequest.cshtml" />
+    <Content Include="Views\Manage\VerifyExpert.cshtml" />
+    <Content Include="Views\Manage\AdminPromote.cshtml" />
+>>>>>>> refs/remotes/origin/master
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
