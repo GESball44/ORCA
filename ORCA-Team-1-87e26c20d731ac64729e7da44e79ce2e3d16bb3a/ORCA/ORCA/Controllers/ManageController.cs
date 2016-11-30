@@ -664,7 +664,7 @@ namespace ORCA.Controllers
             //    db.SaveChanges();
             //    return RedirectToAction("Index");
             //}
-            //return View(ticket);
+            return View();
         }
 
 
